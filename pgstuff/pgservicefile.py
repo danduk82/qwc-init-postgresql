@@ -6,6 +6,7 @@ import argparse as ap
 # Class PgService
 # this class represents a single profile within the pg_service.conf file
 class PgService:
+    """This class represents a single profile within the pg_service.conf file"""
  
     pg_service_template = """[%(name)s]
 host=%(host)s
@@ -32,6 +33,7 @@ sslmode=%(sslmode)s
 # Class PgServices
 # This class is used to setup the pg_service.conf file
 class PgServices:
+    """This class is used to setup the pg_service.conf file"""
     
     def __init__(self, pg_service_file: str):
         self.pg_service_file = pg_service_file
@@ -77,9 +79,8 @@ class PgServices:
         with open(self.pg_service_file, "w") as f:
             f.write(str(self))
             
-
 # main
-if __name__ == "__main__":
+def main():
     argParser = ap.ArgumentParser(description="Setup pg_service.conf file")
     argParser.add_argument("-f", "--pg-service-file",
                            dest="pg_service_file",
@@ -93,3 +94,5 @@ if __name__ == "__main__":
     services.getServicesFromEnv()
     services.write()
     
+if __name__ == "__main__":
+    main()

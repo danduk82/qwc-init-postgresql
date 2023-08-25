@@ -3,18 +3,19 @@ FROM python:3.11
 # Install dependencies
 
 COPY requirements.txt /app/requirements.txt
+COPY setup.py /app/setup.py
 COPY pgstuff /app/pgstuff
 COPY tests /app/tests
 
 WORKDIR /app
 
-# install requirements
+# Install requirements
 RUN pip install -r requirements.txt
 
 # Install pgstuff local module
-RUN pip install -e pgstuff
+RUN pip install -e .
 
 # Run tests
-RUN python -m unittest discover -s tests
+RUN pytest
 
 
