@@ -1,12 +1,12 @@
 # import test modules
 import pytest
 
-# Test the creation of pgServices class
-from pgstuff import pgService, pgServices
+# Test the creation of PgServices class
+from pgstuff import PgService, PgServices
 
-# test pgService
-def test_pgService():
-    service = pgService(
+# test PgService
+def test_PgService():
+    service = PgService(
         name = "test",
         host = "host",
         port = "port",
@@ -39,12 +39,12 @@ password=password
 sslmode=prefer
 """
 
-# test pgServices
-def test_pgServices():
-    services = pgServices("pg_service.conf")
+# test PgServices
+def test_PgServices():
+    services = PgServices("pg_service.conf")
     assert services.pg_service_file == "pg_service.conf"
     assert services.services == []
-    services.addService(pgService(
+    services.addService(PgService(
         name = "test",
         host = "host",
         port = "port",
@@ -69,9 +69,9 @@ password=password
 sslmode=prefer
 """
 
-# test pgServices.getServicesFromEnv
-def test_pgServices_getServicesFromEnv():
-    services = pgServices("pg_service.conf")
+# test PgServices.getServicesFromEnv
+def test_PgServices_getServicesFromEnv():
+    services = PgServices("pg_service.conf")
     os.environ["PG_SERVICES_LIST"] = "test"
     os.environ["PG_SERVICE_HOST_TEST"] = "host"
     os.environ["PG_SERVICE_PORT_TEST"] = "port"

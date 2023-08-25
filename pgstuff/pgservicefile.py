@@ -3,9 +3,9 @@
 import os
 import argparse as ap
 
-# Class pgService
+# Class PgService
 # this class represents a single profile within the pg_service.conf file
-class pgService:
+class PgService:
  
     pg_service_template = """[%(name)s]
 host=%(host)s
@@ -37,19 +37,19 @@ class PgServices:
         self.pg_service_file = pg_service_file
         self.services = []
         
-    def addService(self, service: pgService):
+    def addService(self, service: PgService):
         self.services.append(service)
         
     def getServicesFromEnv(self):
         servicesList = self.parseEnv(os.environ.get("PG_SERVICES_LIST")).split(",")
         for serviceName in servicesList:
-            service = pgService(
-                name = serviceName
-                host = os.environ.get("PG_SERVICE_HOST_" + serviceName.upper())
-                port = os.environ.get("PG_SERVICE_PORT_" + serviceName.upper())
-                dbname = os.environ.get("PG_SERVICE_DBNAME_" + serviceName.upper())
-                user = os.environ.get("PG_SERVICE_USER_" + serviceName.upper())
-                password = os.environ.get("PG_SERVICE_PASSWORD_" + serviceName.upper())
+            service = PgService(
+                name = serviceName,
+                host = os.environ.get("PG_SERVICE_HOST_" + serviceName.upper()),
+                port = os.environ.get("PG_SERVICE_PORT_" + serviceName.upper()),
+                dbname = os.environ.get("PG_SERVICE_DBNAME_" + serviceName.upper()),
+                user = os.environ.get("PG_SERVICE_USER_" + serviceName.upper()),
+                password = os.environ.get("PG_SERVICE_PASSWORD_" + serviceName.upper()),
                 sslmode = os.environ.get("PG_SERVICE_SSLMODE_" + serviceName.upper())
             )
             self.addService(service)
