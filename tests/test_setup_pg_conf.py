@@ -1,5 +1,6 @@
 # import test modules
 import pytest
+import os
 
 # Test the creation of PgServices class
 from pgstuff import PgService, PgServices

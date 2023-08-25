@@ -41,7 +41,7 @@ class PgServices:
         self.services.append(service)
         
     def getServicesFromEnv(self):
-        servicesList = self.parseEnv(os.environ.get("PG_SERVICES_LIST")).split(",")
+        servicesList = os.environ.get("PG_SERVICES_LIST").split(",")
         for serviceName in servicesList:
             service = PgService(
                 name = serviceName,
