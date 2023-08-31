@@ -1,0 +1,9 @@
+# List of schemas to be created
+---
+schemas:
+  - name: "{{ lookup('env', 'PG_SERVICE_SCHEMA_SERVICE_WRITE') }}"
+    owner: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE_WRITE') }}"
+    state: present
+  - name: "{{ lookup('env', 'PG_SERVICE_SCHEMA_QGIS_WRITE') }}"
+    owner: "{{ lookup('env', 'PG_SERVICE_USER_QGIS_WRITE') }}"
+    state: present

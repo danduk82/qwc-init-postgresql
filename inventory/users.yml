@@ -1,0 +1,38 @@
+# List of users to create
+---
+users:
+  - name: "{{ lookup('env', 'PG_SERVICE_USER_QGIS') }}"
+    password: "{{ lookup('env', 'PG_SERVICE_PASSWORD_QGIS') }}"
+    priv: ALL
+    role_attr_flags: NOSUPERUSER
+    state: present
+  - name: "{{ lookup('env', 'PG_SERVICE_USER_QGIS_WRITE') }}"
+    password: "{{ lookup('env', 'PG_SERVICE_PASSWORD_QGIS_WRITE') }}"
+    priv: ALL
+    role_attr_flags: NOSUPERUSER
+    state: present
+  - name: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE') }}"
+    password: "{{ lookup('env', 'PG_SERVICE_PASSWORD_SERVICE') }}"
+    priv: ALL
+    role_attr_flags: NOSUPERUSER
+    state: present
+  - name: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE_WRITE') }}"
+    password: "{{ lookup('env', 'PG_SERVICE_PASSWORD_SERVICE_WRITE') }}"
+    priv: ALL
+    role_attr_flags: NOSUPERUSER
+    state: present
+
+
+
+# GRANT USAGE ON SCHEMA geodb TO qgis;
+# GRANT SELECT ON ALL TABLES IN SCHEMA geodb TO qgis;
+
+# GRANT ALL ON SCHEMA geodb TO qgis_write;
+# GRANT ALL ON ALL TABLES IN SCHEMA geodb TO qgis_write;
+# GRANT ALL ON ALL SEQUENCES IN SCHEMA geodb TO qgis_write;
+
+# GRANT USAGE ON SCHEMA qwc_config TO service;
+# GRANT SELECT ON ALL TABLES IN SCHEMA qwc_config TO service;
+
+# GRANT ALL ON SCHEMA qwc_config TO service_write;
+# GRANT ALL ON ALL TABLES IN SCHEMA qwc_config TO service_write;

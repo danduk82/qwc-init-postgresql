@@ -1,0 +1,82 @@
+# Custom ACL on schemas
+---
+permissions:
+  - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_QGIS_WRITE') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_QGIS') }}"
+    type: schema
+    objs: "{{ lookup('env', 'PG_SERVICE_SCHEMA_QGIS_WRITE') }}"
+    priv: USAGE
+    state: present
+  - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_QGIS_WRITE') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_QGIS') }}"
+    objs: ALL_IN_SCHEMA
+    type: table
+    priv: SELECT
+    state: present
+
+  - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_QGIS_WRITE') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_QGIS') }}"
+    type: schema
+    objs: "{{ lookup('env', 'PG_SERVICE_SCHEMA_QGIS_WRITE') }}"
+    priv: USAGE
+    state: present
+  - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_QGIS_WRITE') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_QGIS') }}"
+    objs: ALL_IN_SCHEMA
+    type: sequence
+    priv: ALL
+    state: present
+  - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_QGIS_WRITE') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_QGIS') }}"
+    objs: ALL_IN_SCHEMA
+    type: table
+    priv: ALL
+    state: present
+
+  - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_SERVICE_WRITE') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE') }}"
+    type: schema
+    objs: "{{ lookup('env', 'PG_SERVICE_SCHEMA_SERVICE_WRITE') }}"
+    priv: USAGE
+    state: present
+  - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_SERVICE_WRITE') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE') }}"
+    objs: ALL_IN_SCHEMA
+    type: table
+    priv: SELECT
+    state: present
+    
+  - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_SERVICE_WRITE') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE') }}"
+    type: schema
+    objs: "{{ lookup('env', 'PG_SERVICE_SCHEMA_SERVICE_WRITE') }}"
+    priv: USAGE
+    state: present
+  - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_SERVICE_WRITE') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE') }}"
+    objs: ALL_IN_SCHEMA
+    type: sequence
+    priv: ALL
+    state: present
+  - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_SERVICE_WRITE') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE') }}"
+    objs: ALL_IN_SCHEMA
+    type: table
+    priv: ALL
+    state: present
+
+
+
+
+# GRANT USAGE ON SCHEMA geodb TO qgis;
+# GRANT SELECT ON ALL TABLES IN SCHEMA geodb TO qgis;
+
+# GRANT ALL ON SCHEMA geodb TO qgis_write;
+# GRANT ALL ON ALL TABLES IN SCHEMA geodb TO qgis_write;
+# GRANT ALL ON ALL SEQUENCES IN SCHEMA geodb TO qgis_write;
+
+# GRANT USAGE ON SCHEMA qwc_config TO service;
+# GRANT SELECT ON ALL TABLES IN SCHEMA qwc_config TO service;
+
+# GRANT USAGE ON SCHEMA qwc_config TO service_write;
+# GRANT ALL ON ALL TABLES IN SCHEMA qwc_config TO service_write;

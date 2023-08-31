@@ -1,0 +1,74 @@
+# An ansible inventory to setup postgreql users and roles
+
+---
+- name: Manage roles and schema permissions
+  hosts: 127.0.0.1
+  connection: local
+  become: no
+  vars_files:
+    - extensions.yml
+    - users.yml
+    - schemas.yml
+    - permissions.yml
+  tasks:
+    - name: Create extensions
+      postgresql_ext:
+        login_host: "{{ lookup('env', 'PGHOST') | default('localhost') }}"
+        login_password: "{{ lookup('env', 'PGPASSWORD') }}"
+        login_user: "{{ lookup('env', 'PGUSER') | default('postgres') }}"
+        db: "{{ lookup('env', 'PGDATABASE') | default('postgres') }}"
+        name: "{{ item.name }}"
+        state: present
+      loop: "{{ extensions }}"
+      when: item.state == 'present'
+    - name: Create roles
+      postgresql_user:
+        login_host: "{{ lookup('env', 'PGHOST') | default('localhost') }}"
+        login_password: "{{ lookup('env', 'PGPASSWORD') }}"
+        login_user: "{{ lookup('env', 'PGUSER') | default('postgres') }}"
+        db: "{{ lookup('env', 'PGDATABASE') | default('postgres') }}"
+        name: "{{ item.name }}"
+        password: "{{ item.password }}"
+        encrypted: yes
+        role_attr_flags: "{{ item.role_attr_flags | default('NOSUPERUSER') }}"
+        state: present
+      loop: "{{ users }}"
+      when: item.state == 'present'
+    - name: Create schemas
+      postgresql_schema:
+        login_host: "{{ lookup('env', 'PGHOST') | default('localhost') }}"
+        login_password: "{{ lookup('env', 'PGPASSWORD') }}"
+        login_user: "{{ lookup('env', 'PGUSER') | default('postgres') }}"
+        db: "{{ lookup('env', 'PGDATABASE') | default('postgres') }}"
+        name: "{{ item.name }}"
+        owner: "{{ item.owner }}"
+        state: present
+      loop: "{{ schemas }}"
+      when: item.state == 'present'
+    - name: Grant schema usage
+      community.postgresql.postgresql_privs:
+        login_host: "{{ lookup('env', 'PGHOST') | default('localhost') }}"
+        login_password: "{{ lookup('env', 'PGPASSWORD') }}"
+        login_user: "{{ lookup('env', 'PGUSER') | default('postgres') }}"
+        db: "{{ lookup('env', 'PGDATABASE') | default('postgres') }}"
+        priv: "{{ item.priv | default('ALL') }}"
+        role: "{{ item.role }}"
+        objs: "{{ item.objs }}"
+        type: "{{ item.type | default('schema') }}"
+        state: present
+      loop: "{{ permissions }}"
+      when: item.state == 'present' and item.type == 'schema'
+    - name: Grant schema permissions
+      community.postgresql.postgresql_privs:
+        login_host: "{{ lookup('env', 'PGHOST') | default('localhost') }}"
+        login_password: "{{ lookup('env', 'PGPASSWORD') }}"
+        login_user: "{{ lookup('env', 'PGUSER') | default('postgres') }}"
+        db: "{{ lookup('env', 'PGDATABASE') | default('postgres') }}"
+        priv: "{{ item.priv | default('ALL') }}"
+        role: "{{ item.role }}"
+        type: "{{ item.type | default('schema') }}"
+        schema: "{{ item.schema }}"
+        objs: "{{ item.objs }}"
+        state: present
+      loop: "{{ permissions }}"
+      when: item.state == 'present' and item.type != 'schema'

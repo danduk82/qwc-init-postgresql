@@ -1,0 +1,47 @@
+version: 1.3.0
+services:
+  qwc-init:
+    image: danduk82/qwc-init-postgresql:latest
+    # volumes:
+    #   - ./inventory:/app/inventory
+    environment:
+      - PGHOST=172.17.0.1
+      - PGPORT=5432
+      - PGUSER=postgres
+      - PGPASSWORD=password
+      - PGDATABASE=qwc_test_db
+      - PG_SERVICES_LIST=qgis,qgis_write,service,service_write
+      - PG_SERVICE_SCHEMA_QGIS=geodb
+      - PG_SERVICE_USER_QGIS=qgis
+      - PG_SERVICE_PASSWORD_QGIS=qgispassword
+      - PG_SERVICE_DATABASE_QGIS=qwc_test_db
+      - PG_SERVICE_HOST_QGIS=172.17.0.1
+      - PG_SERVICE_PORT_QGIS=5432
+
+      - PG_SERVICE_USER_QGIS_WRITE=qgis_write
+      - PG_SERVICE_SCHEMA_QGIS_WRITE=geodb
+      - PG_SERVICE_PASSWORD_QGIS_WRITE=qgis-write-password
+      - PG_SERVICE_DATABASE_QGIS_WRITE=qwc_test_db
+      - PG_SERVICE_HOST_QGIS_WRITE=172.17.0.1
+      - PG_SERVICE_PORT_QGIS_WRITE=5432
+      
+      - PG_SERVICE_SCHEMA_SERVICE=qwc_init
+      - PG_SERVICE_USER_SERVICE=service
+      - PG_SERVICE_PASSWORD_SERVICE=servicepassword
+      - PG_SERVICE_DATABASE_SERVICE=qwc_test_db
+      - PG_SERVICE_HOST_SERVICE=172.17.0.1
+      - PG_SERVICE_PORT_SERVICE=5432
+      
+      - PG_SERVICE_SCHEMA_SERVICE_WRITE=qwc_init
+      - PG_SERVICE_USER_SERVICE_WRITE=service_write
+      - PG_SERVICE_PASSWORD_SERVICE_WRITE=service-write-password
+      - PG_SERVICE_DATABASE_SERVICE_WRITE=qwc_test_db
+      - PG_SERVICE_HOST_SERVICE_WRITE=172.17.0.1
+      - PG_SERVICE_PORT_SERVICE_WRITE=5432
+    command:
+      - /bin/sh
+      - -c
+      - sleep infinity
+
+
+

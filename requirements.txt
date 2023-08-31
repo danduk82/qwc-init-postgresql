@@ -1,1 +1,4 @@
 pytest==7.4.0
+psycopg2-binary==2.9.7
+ansible==8.3.0
+ansible-core==2.15.3
