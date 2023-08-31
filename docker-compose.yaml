@@ -11,6 +11,7 @@ services:
       - PGPASSWORD=password
       - PGDATABASE=qwc_test_db
       - PG_SERVICES_LIST=qgis,qgis_write,service,service_write
+
       - PG_SERVICE_SCHEMA_QGIS=geodb
       - PG_SERVICE_USER_QGIS=qgis
       - PG_SERVICE_PASSWORD_QGIS=qgispassword
