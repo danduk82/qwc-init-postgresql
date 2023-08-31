@@ -41,6 +41,7 @@ tmpfile=$(mktemp)
 
 cat > $tmpfile << EOF
 PG_SERVICES_LIST=profile_a,profile_b
+
 PG_SERVICE_HOST_PROFILE_A=localhost
 PG_SERVICE_PORT_PROFILE_A=5432
 PG_SERVICE_DBNAME_PROFILE_A=db_a
