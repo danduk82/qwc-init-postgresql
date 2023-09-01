@@ -17,8 +17,6 @@ RUN pip install -e .
 # Copy ansible playbooks
 COPY inventory /app/inventory
 
-
 # Run tests
 RUN pytest
-
 
