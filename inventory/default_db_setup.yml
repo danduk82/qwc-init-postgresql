@@ -7,7 +7,6 @@
   become: no
   vars_files:
     - extensions.yml
-    - users.yml
     - schemas.yml
     - permissions.yml
   tasks:
@@ -20,19 +19,6 @@
         name: "{{ item.name }}"
         state: present
       loop: "{{ extensions }}"
-      when: item.state == 'present'
-    - name: Create roles
-      postgresql_user:
-        login_host: "{{ lookup('env', 'PGHOST') | default('localhost') }}"
-        login_password: "{{ lookup('env', 'PGPASSWORD') }}"
-        login_user: "{{ lookup('env', 'PGUSER') | default('postgres') }}"
-        db: "{{ lookup('env', 'PGDATABASE') | default('postgres') }}"
-        name: "{{ item.name }}"
-        password: "{{ item.password }}"
-        encrypted: yes
-        role_attr_flags: "{{ item.role_attr_flags | default('NOSUPERUSER') }}"
-        state: present
-      loop: "{{ users }}"
       when: item.state == 'present'
     - name: Create schemas
       postgresql_schema:
