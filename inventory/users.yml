@@ -4,22 +4,22 @@ users:
   - name: "{{ lookup('env', 'PG_SERVICE_USER_QGIS') }}"
     password: "{{ lookup('env', 'PG_SERVICE_PASSWORD_QGIS') }}"
     priv: ALL
-    role_attr_flags: NOSUPERUSER
+    #role_attr_flags: NOSUPERUSER
     state: present
   - name: "{{ lookup('env', 'PG_SERVICE_USER_QGIS_WRITE') }}"
     password: "{{ lookup('env', 'PG_SERVICE_PASSWORD_QGIS_WRITE') }}"
     priv: ALL
-    role_attr_flags: NOSUPERUSER
+    #role_attr_flags: NOSUPERUSER
     state: present
   - name: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE') }}"
     password: "{{ lookup('env', 'PG_SERVICE_PASSWORD_SERVICE') }}"
     priv: ALL
-    role_attr_flags: NOSUPERUSER
+    #role_attr_flags: NOSUPERUSER
     state: present
   - name: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE_WRITE') }}"
     password: "{{ lookup('env', 'PG_SERVICE_PASSWORD_SERVICE_WRITE') }}"
     priv: ALL
-    role_attr_flags: NOSUPERUSER
+    #role_attr_flags: NOSUPERUSER
     state: present
 
 

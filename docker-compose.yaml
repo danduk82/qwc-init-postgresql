@@ -12,6 +12,7 @@ services:
       - PGDATABASE=qwc_test_db
       - PG_SERVICES_LIST=qgis,qgis_write,service,service_write
 
+      - PG_SERVICE_SERVICENAME_QGIS=maps_geodb_read
       - PG_SERVICE_SCHEMA_QGIS=geodb
       - PG_SERVICE_USER_QGIS=qgis
       - PG_SERVICE_PASSWORD_QGIS=qgispassword
@@ -19,6 +20,7 @@ services:
       - PG_SERVICE_HOST_QGIS=172.17.0.1
       - PG_SERVICE_PORT_QGIS=5432
 
+      - PG_SERVICE_SERVICENAME_QGIS_WRITE=maps_geodb_write
       - PG_SERVICE_USER_QGIS_WRITE=qgis_write
       - PG_SERVICE_SCHEMA_QGIS_WRITE=geodb
       - PG_SERVICE_PASSWORD_QGIS_WRITE=qgis-write-password
@@ -26,6 +28,7 @@ services:
       - PG_SERVICE_HOST_QGIS_WRITE=172.17.0.1
       - PG_SERVICE_PORT_QGIS_WRITE=5432
       
+      - PG_SERVICE_SERVICENAME_SERVICE=maps_configdb_read
       - PG_SERVICE_SCHEMA_SERVICE=qwc_init
       - PG_SERVICE_USER_SERVICE=service
       - PG_SERVICE_PASSWORD_SERVICE=servicepassword
@@ -33,6 +36,7 @@ services:
       - PG_SERVICE_HOST_SERVICE=172.17.0.1
       - PG_SERVICE_PORT_SERVICE=5432
       
+      - PG_SERVICE_SERVICENAME_SERVICE_WRITE=maps_configdb_write
       - PG_SERVICE_SCHEMA_SERVICE_WRITE=qwc_init
       - PG_SERVICE_USER_SERVICE_WRITE=service_write
       - PG_SERVICE_PASSWORD_SERVICE_WRITE=service-write-password

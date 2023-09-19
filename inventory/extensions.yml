@@ -1,5 +1,3 @@
 extensions:
   - name: postgis
     state: present
-  - name: hstore
-    state: present

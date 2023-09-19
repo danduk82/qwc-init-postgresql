@@ -15,19 +15,19 @@ permissions:
     state: present
 
   - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_QGIS_WRITE') }}"
-    role: "{{ lookup('env', 'PG_SERVICE_USER_QGIS') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_QGIS_WRITE') }}"
     type: schema
     objs: "{{ lookup('env', 'PG_SERVICE_SCHEMA_QGIS_WRITE') }}"
     priv: USAGE
     state: present
   - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_QGIS_WRITE') }}"
-    role: "{{ lookup('env', 'PG_SERVICE_USER_QGIS') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_QGIS_WRITE') }}"
     objs: ALL_IN_SCHEMA
     type: sequence
     priv: ALL
     state: present
   - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_QGIS_WRITE') }}"
-    role: "{{ lookup('env', 'PG_SERVICE_USER_QGIS') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_QGIS_WRITE') }}"
     objs: ALL_IN_SCHEMA
     type: table
     priv: ALL
@@ -47,19 +47,19 @@ permissions:
     state: present
     
   - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_SERVICE_WRITE') }}"
-    role: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE_WRITE') }}"
     type: schema
     objs: "{{ lookup('env', 'PG_SERVICE_SCHEMA_SERVICE_WRITE') }}"
     priv: USAGE
     state: present
   - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_SERVICE_WRITE') }}"
-    role: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE_WRITE') }}"
     objs: ALL_IN_SCHEMA
     type: sequence
     priv: ALL
     state: present
   - schema: "{{ lookup('env', 'PG_SERVICE_SCHEMA_SERVICE_WRITE') }}"
-    role: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE') }}"
+    role: "{{ lookup('env', 'PG_SERVICE_USER_SERVICE_WRITE') }}"
     objs: ALL_IN_SCHEMA
     type: table
     priv: ALL

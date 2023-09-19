@@ -46,7 +46,7 @@ class PgServices:
         servicesList = os.environ.get("PG_SERVICES_LIST").split(",")
         for serviceName in servicesList:
             service = PgService(
-                name = serviceName,
+                name = os.environ.get("PG_SERVICE_SERVICENAME_" + serviceName.upper()),
                 host = os.environ.get("PG_SERVICE_HOST_" + serviceName.upper()),
                 port = os.environ.get("PG_SERVICE_PORT_" + serviceName.upper()),
                 dbname = os.environ.get("PG_SERVICE_DBNAME_" + serviceName.upper()),

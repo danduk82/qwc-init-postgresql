@@ -74,6 +74,7 @@ sslmode=prefer
 def test_PgServices_getServicesFromEnv():
     services = PgServices("pg_service.conf")
     os.environ["PG_SERVICES_LIST"] = "test"
+    os.environ["PG_SERVICE_SERVICENAME_TEST"] = "test"
     os.environ["PG_SERVICE_HOST_TEST"] = "host"
     os.environ["PG_SERVICE_PORT_TEST"] = "port"
     os.environ["PG_SERVICE_DBNAME_TEST"] = "dbname"
